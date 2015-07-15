@@ -28,6 +28,7 @@ get "/authorize" do
     erb :"login"
   else
     if @owner.password == params["password"]
+      session[:user_id] = @owner.id
       redirect "/see_profile/#{@owner.id}"
     else
       @error = true
@@ -56,15 +57,23 @@ get "/existing_owner" do
 end
 
 get "/see_profile/:x" do 
-  @owner = Owner.find(params["x"])
-  @petsandevents = Event.event_details
-  # find pets where owner id = x
-  erb :"see_profile",:layout => :"ux_layout"
+  
+  if session[:user_id] && session[:user_id] == params[:x].to_i
+    @owner = Owner.find(session[:user_id])
+    @petsandevents = Event.event_details
+    erb :"see_profile",:layout => :"ux_layout"
+  else
+    redirect "/login"
+  end
 end
 #/edit profile --------------------------------------------------
 get "/edit_profile/:x" do
-  @owner = Owner.find(params["x"])
-  erb :"edit_profile"
+  if session[:user_id]
+    @owner = Owner.find(session[:user_id])
+    erb :"edit_profile"
+  else
+    redirect "/login"
+  end
 end
 # edit form
 # hidden field to pass id

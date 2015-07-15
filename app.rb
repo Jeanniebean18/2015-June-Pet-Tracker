@@ -4,6 +4,11 @@ require "pry"
 require "sinatra"
 require "sinatra/reloader"
 
+configure do
+  enable :sessions
+end
+ 
+
 # Inventory tracking system for Fibers Home Store. 
 # Empower my program with SQLite.
 require "sqlite3"
