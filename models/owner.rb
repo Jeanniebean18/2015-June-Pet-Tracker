@@ -17,7 +17,7 @@ class Owner
   extend DatabaseClassMethods
   include DatabaseInstanceMethods
   attr_reader :id
-  attr_accessor :name, :email
+  attr_accessor :name, :email, :password
  
   # Initializes a new Owner object.
   #
@@ -31,16 +31,25 @@ class Owner
     @id = owner_options["id"]
     @name = owner_options["name"]
     @email = owner_options["email"]
+    @password = owner_options["password"]
     
   end
   # save row to database. 
   def save
-    CONNECTION.execute("UPDATE owners SET name = '#{self.name}', email = '#{self.email}' WHERE id = #{self.id};")
+    CONNECTION.execute("UPDATE owners SET name = '#{self.name}', email = '#{self.email}' password = '#{self.password}' WHERE id = #{self.id};")
   end
   # instance method adds object attributes to database as a row.
   def add_to_database
-    Owner.add({"name" => "#{self.name}", "email" => "#{self.email}"})
+    Owner.add({"name" => "#{self.name}", "email" => "#{self.email}", "password" => "#{self.password}"})
   end
-
+  def self.find_email(login_email)
+    result = CONNECTION.execute("SELECT * FROM owners WHERE email = '#{login_email}';")# .first
+    if result.blank?
+      return false
+    # else
+ #      Owner.new(result)
+    end
+  end
+ 
 
 end

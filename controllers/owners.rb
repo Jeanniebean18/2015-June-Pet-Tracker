@@ -7,13 +7,27 @@ get "/add_owner" do
   erb :"add_owner"
 end
 get "/save_owner" do
-  @owner = Owner.new({"name" => params["name"], "email" => params["email"]})
+  @owner = Owner.new({"name" => params["name"], "email" => params["email"], "password" => params["password"]})
   if @owner.name_valid(params["name"]) && @owner.email_valid(params["email"]) 
     @owner.add_to_database
     erb :"add_owner_success"
   else
     @error = true
     erb :"add_owner"
+  end
+end
+# login owner -------------------------------------------------
+get "/login" do
+  erb :"login"
+end
+
+get "/authorize" do
+  @owner = Owner.find_email(params["email"])
+    if @owner != false
+    return "#{@owner.name} login success!"
+    # redirect to profile
+  else
+    "That user does not exist"
   end
 end
 # delete owner -------------------------------------------------
