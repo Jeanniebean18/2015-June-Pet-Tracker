@@ -48,7 +48,7 @@ class Owner
     if result.blank? 
       return "nope"
     else 
-      @owner = Owner.new(result)
+      Owner.new(result)
       
     end
   end

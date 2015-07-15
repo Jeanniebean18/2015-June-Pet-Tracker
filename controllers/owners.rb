@@ -24,9 +24,15 @@ end
 get "/authorize" do
   @owner = Owner.find_email(params["email"])
   if @owner == "nope"
-    return "not a valid user"
+    @error = true
+    erb :"login"
   else
-    return "#{@owner.name} login success!"
+    if @owner.password == params["password"]
+      redirect "/see_profile/#{@owner.id}"
+    else
+      @error = true
+      erb :"login"
+    end
   end
 end
 # delete owner -------------------------------------------------
