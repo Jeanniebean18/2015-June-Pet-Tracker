@@ -42,9 +42,15 @@ class Owner
   def add_to_database
     Owner.add({"name" => "#{self.name}", "email" => "#{self.email}", "password" => "#{self.password}"})
   end
+  # find user email when logining in.
   def self.find_email(login_email)
     result = CONNECTION.execute("SELECT * FROM owners WHERE email = '#{login_email}';").first
-    return Owner.new(result)
+    if result.blank? 
+      return "nope"
+    else 
+      @owner = Owner.new(result)
+      
+    end
   end
  
 

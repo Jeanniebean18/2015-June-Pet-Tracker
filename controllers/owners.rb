@@ -23,7 +23,11 @@ end
 
 get "/authorize" do
   @owner = Owner.find_email(params["email"])
-  return "#{@owner.name} login success!"
+  if @owner == "nope"
+    return "not a valid user"
+  else
+    return "#{@owner.name} login success!"
+  end
 end
 # delete owner -------------------------------------------------
 get "/delete_owner_form" do
