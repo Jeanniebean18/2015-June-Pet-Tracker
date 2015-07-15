@@ -43,12 +43,8 @@ class Owner
     Owner.add({"name" => "#{self.name}", "email" => "#{self.email}", "password" => "#{self.password}"})
   end
   def self.find_email(login_email)
-    result = CONNECTION.execute("SELECT * FROM owners WHERE email = '#{login_email}';")# .first
-    if result.blank?
-      return false
-    # else
- #      Owner.new(result)
-    end
+    result = CONNECTION.execute("SELECT * FROM owners WHERE email = '#{login_email}';").first
+    return Owner.new(result)
   end
  
 

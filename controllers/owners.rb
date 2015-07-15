@@ -23,12 +23,7 @@ end
 
 get "/authorize" do
   @owner = Owner.find_email(params["email"])
-    if @owner != false
-    return "#{@owner.name} login success!"
-    # redirect to profile
-  else
-    "That user does not exist"
-  end
+  return "#{@owner.name} login success!"
 end
 # delete owner -------------------------------------------------
 get "/delete_owner_form" do
