@@ -57,7 +57,6 @@ get "/existing_owner" do
 end
 
 get "/see_profile/:x" do 
-  
   if session[:user_id] && session[:user_id] == params[:x].to_i
     @owner = Owner.find(session[:user_id])
     @petsandevents = Event.event_details
@@ -75,9 +74,7 @@ get "/edit_profile/:x" do
     redirect "/login"
   end
 end
-# edit form
-# hidden field to pass id
-  
+
 get "/save_profile" do
   @owner = Owner.find(params["id"])
   # both name_valid and email_valid must return true before saving to object and database.
