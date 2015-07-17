@@ -4,7 +4,7 @@ end
 
 # add owner------------------------------------------------------
 get "/add_owner" do
-  erb :"add_owner"
+  erb :"owners/add_owner"
 end
 get "/save_owner" do
   @owner = Owner.new({"name" => params["name"], "email" => params["email"], "password" => params["password"]})
@@ -13,7 +13,7 @@ get "/save_owner" do
     erb :"add_owner_success"
   else
     @error = true
-    erb :"add_owner"
+    erb :"owners/add_owner"
   end
 end
 # login owner -------------------------------------------------
@@ -38,7 +38,7 @@ get "/authorize" do
 end
 # delete owner -------------------------------------------------
 get "/delete_owner_form" do
-  erb :"delete_owner"
+  erb :"owners/delete_owner"
 end
 
 get "/delete_owner" do
@@ -53,14 +53,14 @@ get "/delete_owner" do
 end
 # select existing owner------------------------------------------
 get "/existing_owner" do
-  erb :"existing_owner"
+  erb :"owners/existing_owner"
 end
 
 get "/see_profile/:x" do 
-  if session[:user_id] # && session[:user_id] == params[:x].to_i
+  if session[:user_id] && session[:user_id] == params[:x].to_i
     @owner = Owner.find(session[:user_id])
     @petsandevents = Event.event_details
-    erb :"see_profile",:layout => :"ux_layout"
+    erb :"owners/see_profile",:layout => :"ux_layout"
   else
     redirect "/login"
   end
@@ -69,7 +69,7 @@ end
 get "/edit_profile/:x" do
   if session[:user_id]
     @owner = Owner.find(session[:user_id])
-    erb :"edit_profile"
+    erb :"owners/edit_profile"
   else
     redirect "/login"
   end
@@ -80,10 +80,10 @@ get "/save_profile" do
   # both name_valid and email_valid must return true before saving to object and database.
   if @owner.name_valid(params["name"]) && @owner.email_valid(params["email"])
     @owner.save
-    erb :"edit_profile_success"
+    erb :"owners/edit_profile_success"
   else
     @error = true
-    erb :"edit_profile"
+    erb :"owners/edit_profile"
   end
 end
 

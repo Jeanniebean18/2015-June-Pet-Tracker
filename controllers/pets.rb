@@ -4,44 +4,44 @@
 
 get "/add_pet/:x" do
   @owner = Owner.find(params["x"])
-  erb :"add_pet"
+  erb :"pets/add_pet"
 end
 
 get "/save_pet" do
   @pet = Pet.new({"name" => params["name"], "owner_id" => params["owner_id"]})
   @pet.add_to_database
-  erb :"add_pet_success"
+  erb :"pets/add_pet_success"
 end
 
 
 # edit pet -------------------------------------------------
 get "/edit_pet/:x" do
   @pet = Pet.find(params["x"])
-  erb :"edit_pet"
+  erb :"pets/edit_pet"
 end
 get "/save_pet_name" do
   @pet = Pet.find(params["id"])
   if @pet.name_valid(params["name"])
     @pet.save
-    erb :"edit_pet_success"
+    erb :"pets/edit_pet_success"
   else
     @error = true
-    erb :"edit_pet"
+    erb :"pets/edit_pet"
   end
 end
 
 # delete pet -------------------------------------------------
 get "/delete_pet/:x" do
   @pet = Pet.find(params["x"])
-  erb :"delete_pet"
+  erb :"pets/delete_pet"
 end
 
 get "/delete_pet_confirm" do
   @pet = Pet.find(params["id"])
   if params["decision"] == "yes"
     @pet.delete
-    erb :"pet_deleted_success" # make erb for this.
+    erb :"pets/pet_deleted_success" # make erb for this.
   else
-    erb :"pet_deleted_fail"
+    erb :"pets/pet_deleted_fail"
   end
 end

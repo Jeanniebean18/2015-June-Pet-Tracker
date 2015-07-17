@@ -4,7 +4,7 @@
 get "/create_event/:x/:y" do
   @category = Category.find(params[:x])
   @owner = Owner.find(params[:y])
-  erb :"create_event"
+  erb :"events/create_event"
 end
 
 get "/save_event" do
@@ -20,7 +20,7 @@ get "/save_event" do
     @pet_event = PetEvent.new("pet_id" => row.to_i, "event_id" => event)
     @pet_event.add_to_database
   end
-  erb :"save_event_success"
+  erb :"events/save_event_success"
 end
 # delete event from pet ------------------------------------------------------
 get "/delete_event_bridge/:x/:y/:z" do
@@ -28,19 +28,19 @@ get "/delete_event_bridge/:x/:y/:z" do
   @event = Event.find(params[:y])
   @owner = Owner.find(params[:z])
   PetEvent.delete_where(params[:x], params[:y])
-  erb :"delete_event_bridge"
+  erb :"events/delete_event_bridge"
 end
 
 # For admin purposes 
 #V View all events ------------------------------------------------------
 get "/event_details" do
   @petsandevents = Event.event_details
-  erb :"event_details"
+  erb :"events/event_details"
 end
 # For admin purposes 
 #Choose event to delete ------------------------------------------------------
 get "/show_events" do
-  erb :"show_events"
+  erb :"events/show_events"
 end
 
 get "/delete_event/:x" do

@@ -7,6 +7,8 @@ require "pry"
 require "sinatra"
 require "sinatra/reloader"
 
+
+
 configure do
   enable :sessions
 end
@@ -41,10 +43,15 @@ require_relative "controllers/events.rb"
 require_relative "database_setup.rb"
 
 
+
+
 #TODO's Add verify's on all fields.
 # find a way to edit event, maybe keep pets involved the same. Seems legit.
 # add in a gem
 # send emails for notifications.
+# encryption for passwords
+# add sessions for all non-admin spots
+# if session[:id] != (useradmin id, redirect to login home)
 
 
 
