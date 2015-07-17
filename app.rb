@@ -37,6 +37,8 @@ require_relative "controllers/pets.rb"
 require_relative "controllers/categories.rb"
 require_relative "controllers/events.rb"
 
+# Database
+require_relative "database_setup.rb"
 
 
 #TODO's Add verify's on all fields.
