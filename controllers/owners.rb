@@ -7,10 +7,11 @@ get "/add_owner" do
   erb :"owners/add_owner"
 end
 get "/save_owner" do
-  @owner = Owner.new({"name" => params["name"], "email" => params["email"], "password" => params["password"]})
+  @owner = Owner.new({name: params["name"], email: params["email"], password: params["password"]})
+  # add unique active record.
   if @owner.valid? 
     @owner.save
-    erb :"add_owner_success"
+    erb :"owners/add_owner_success"
   else
     @error = true
     erb :"owners/add_owner"
@@ -22,12 +23,12 @@ get "/login" do
 end
 
 get "/authorize" do
-  
-  @owner = Owner.where({email: params["email"] })
+  @owner = Owner.where({email: params["email"]}).first
   if @owner.nil?
     @error = true
     erb :"login"
   else
+    # 
     if @owner.password == params["password"]
       session[:user_id] = @owner.id
       redirect "/see_profile/#{@owner.id}"
@@ -77,9 +78,11 @@ get "/edit_profile/:x" do
 end
 
 get "/save_profile" do
-  @owner = Owner.find(params["id"])
-  if @owner.valid? 
-    @owner.save
+  @owner = Owner.find(params["id"]) # this might be a little wierd...
+  @owner.name = params["name"]
+  @owner.email = params["email"]
+  if @owner.valid?
+  @owner.save
     erb :"owners/edit_profile_success"
   else
     @error = true

@@ -7,8 +7,8 @@
 <p>Enter any changes and click submit. </p>
    
 <form action="/save_profile">
-  <p> Name : <input type="text" placeholder="" name="name" value="<%=@owner.name%>" ></p>
-  <p> Email : <input type="email" placeholder="" name="email" value="<%=@owner.email%>" ></p>
+  <p> Name : <input type="text" placeholder="" name="name" value="<%=@owner.name%>" required></p>
+  <p> Email : <input type="email" placeholder="" name="email" value="<%=@owner.email%>" required></p>
   <input type="hidden" name= "id" value="<%=@owner.id%>">
   <p> <input type="submit" value="submit changes"></p>
 </form>

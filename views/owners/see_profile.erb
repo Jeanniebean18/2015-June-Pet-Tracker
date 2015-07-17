@@ -29,68 +29,28 @@
 
   <div id="cat_back">
     
-    
-    <div id="events">
-      <div id="add_pet_event">add a pet event:</div>
-     
-      <% Category.all.each do |category| %>
-      <a href = "/create_event/<%= category.id %>/<%= @owner.id %>" class="blue">
-        <%if category.name == "Medicine"%>
-        <div id="icons_wrapper">
-          <div id="medicine_mobile">
-          <div class="medicine_icon"></div>
-          <div class="center"> 
-            <%= category.name %>
-          </div>
-        </div>
-      </a> 
-      <% end %>
-      <%if category.name == "Grooming"%>
-      <div id="medicine_mobile">
-        <div class="grooming_icon"></div>
-        <div class="center"> 
-          <%= category.name %>
-        </div>
-      </div>
-    </a> 
-    <% end %>
-     
-    <%if category.name == "Vet Visit"%>
-    <div id="medicine_mobile">
-      <div class="vet_visit_icon"></div>
-      <div class="center"> 
-        <%= category.name %>
-      </div>
-    </div>
-  </a> 
-  <% end %>
-  <% end %>
-  
-  <div style="clear:both">
-    </div>
-    
-  </div> 
-</div>
-
-
 <!-- listing pets to edit or delete -->
-  
- 
 <!-- or each pet, show the corresponding events. -->
 <!-- or for each event, show details and pets involved. --> <!-- ## this will be the join table. -->
 <!-- both! -->
-  
+  #TODO
    
 <div id="pets">
   <%@pets = Pet.where(owner_id: @owner.id)%>
-  <%@events = @pets.events%>
-  
-  <% @pets.each do |pet| %>
+  <%if @pets.blank?%>
+  "You have no pets. Add one here."
+  <%else%>
+ <% @pets.each do |pet| %>
   <p><h2> <%=pet.name%></h2> <a href="/edit_pet/<%=pet.id%>">edit name</a> <a href="/delete_pet/<%=pet.id%>"><br>delete pet</br></a></p>
+   <%@events = @pets.events%>
+    <%if @events.blank?%>
+    <%else%>
   <%@events.each do |event|%>
   <p><%event.name%> - <%event.date%> - <%event.reminder_time%> - <%event.comment%> - <a href ="/delete_event_bridge/<%=pet.id%>/event.id/<%=@owner.id%>">delete from pet</a></p>
-  <%=end%>
-  <%=end%>
+    <%end%>
+    <%end%>
+  <%end%>
+  <%end%>
   
   <!-- add pet -->
       <h2><a href="/add_pet/<%=@owner.id %>">Add a Pet</a></h2>
