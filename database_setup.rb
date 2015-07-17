@@ -1,19 +1,43 @@
-
+#
 # CONNECTION.execute("DROP TABLE owners;")
 # CONNECTION.execute("DROP TABLE pets;")
 # CONNECTION.execute("DROP TABLE events;")
 # CONNECTION.execute("DROP TABLE pet_events;")
 
-CONNECTION.execute("CREATE TABLE IF NOT EXISTS owners (id INTEGER PRIMARY KEY, name TEXT, email TEXT, password TEXT);")
+unless ActiveRecord::Base.connection.table_exists?(:owners)
+  ActiveRecord::Base.connection.create_table :owners do |t|
+    t.string :name
+    t.string :email
+    t.string :password
+  end  
+end
 
-CONNECTION.execute("CREATE TABLE IF NOT EXISTS pets (id INTEGER PRIMARY KEY, name TEXT, owner_id INTEGER);")
+unless ActiveRecord::Base.connection.table_exists?(:pets)
+  ActiveRecord::Base.connection.create_table :pets do |t|
+    t.string :name
+    t.integer :owner_id
+  end  
+end
 
-CONNECTION.execute("CREATE TABLE IF NOT EXISTS events (id INTEGER PRIMARY KEY, name TEXT, date TEXT,
-category_id INTEGER, reminder_time TEXT, comment TEXT);")
+unless ActiveRecord::Base.connection.table_exists?(:events)
+  ActiveRecord::Base.connection.create_table :events do |t|
+    t.string :name
+    t.string :date
+    t.integer :category_id
+    t.string :reminder_time
+    t.string :comment
+  end  
+end
 
-CONNECTION.execute("CREATE TABLE IF NOT EXISTS categories (id INTEGER PRIMARY KEY, name TEXT);")
+unless ActiveRecord::Base.connection.table_exists?(:categories)
+  ActiveRecord::Base.connection.create_table :categories do |t|
+    t.string :name
+  end  
+end
 
-CONNECTION.execute("CREATE TABLE IF NOT EXISTS pet_events (pet_id INTEGER, event_id INTEGER);")
-
-# Get results as an Array of Hashes.
-CONNECTION.results_as_hash = true
+unless ActiveRecord::Base.connection.table_exists?(:pets_events)
+  ActiveRecord::Base.connection.create_table :pets_events, id: false do |t|
+    t.integer :event_id
+    t.integer :pet_id
+  end  
+end

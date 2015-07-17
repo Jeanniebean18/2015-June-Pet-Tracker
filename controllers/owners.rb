@@ -8,8 +8,8 @@ get "/add_owner" do
 end
 get "/save_owner" do
   @owner = Owner.new({"name" => params["name"], "email" => params["email"], "password" => params["password"]})
-  if @owner.name_valid(params["name"]) && @owner.email_valid(params["email"]) 
-    @owner.add_to_database
+  if @owner.valid? 
+    @owner.save
     erb :"add_owner_success"
   else
     @error = true
@@ -22,8 +22,9 @@ get "/login" do
 end
 
 get "/authorize" do
-  @owner = Owner.find_email(params["email"])
-  if @owner == "nope"
+  
+  @owner = Owner.where({email: params["email"] })
+  if @owner.nil?
     @error = true
     erb :"login"
   else
@@ -44,6 +45,7 @@ end
 get "/delete_owner" do
   @owner = Owner.find(params["id"])
   if params["decision"] == "yes"
+    #also, add javacript to hide that box.
     @owner.delete
     "deleted." # make erb for this.
   else
@@ -59,7 +61,6 @@ end
 get "/see_profile/:x" do 
   if session[:user_id] && session[:user_id] == params[:x].to_i
     @owner = Owner.find(session[:user_id])
-    @petsandevents = Event.event_details
     erb :"owners/see_profile",:layout => :"ux_layout"
   else
     redirect "/login"
@@ -67,7 +68,7 @@ get "/see_profile/:x" do
 end
 #/edit profile --------------------------------------------------
 get "/edit_profile/:x" do
-  if session[:user_id]
+  if session[:user_id] && session[:user_id] == params[:x].to_i
     @owner = Owner.find(session[:user_id])
     erb :"owners/edit_profile"
   else
@@ -77,8 +78,7 @@ end
 
 get "/save_profile" do
   @owner = Owner.find(params["id"])
-  # both name_valid and email_valid must return true before saving to object and database.
-  if @owner.name_valid(params["name"]) && @owner.email_valid(params["email"])
+  if @owner.valid? 
     @owner.save
     erb :"owners/edit_profile_success"
   else

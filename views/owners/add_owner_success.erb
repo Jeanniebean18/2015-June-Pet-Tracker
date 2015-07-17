@@ -1,4 +1,6 @@
-Saved! Thanks <%= params["name"]%>
+Saved! Thanks <%=@owner.name%>
 <% Owner.all.each do |owner| %>
 <p> <a href="/see_profile/<%= owner.id %>"> <%= owner.name %><br> <%= owner.email %></a>
   <% end %>
+  
+  <a href ="/home">

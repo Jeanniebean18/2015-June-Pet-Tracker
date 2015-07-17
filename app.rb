@@ -1,13 +1,11 @@
 # Empower my program with SQLite.
-require 'rubygems'
-require 'bundler/setup'
-
+# require 'rubygems'
+# require 'bundler/setup'
+require "active_record"
 require "sqlite3"
 require "pry"
 require "sinatra"
 require "sinatra/reloader"
-
-
 
 configure do
   enable :sessions
@@ -30,7 +28,11 @@ require_relative "models/petevent.rb"
 
 
 # Load/create our database for this program in SQlite.
-CONNECTION = SQLite3::Database.new("pet_tracker.db")
+# CONNECTION = SQLite3::Database.new("pet_tracker.db")
+ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: 'pet_tracker.db')
+
+# So that ActiveRecord explains the SQL it's running in the logs.
+ActiveRecord::Base.logger = ActiveSupport::Logger.new(STDOUT)
 
 #___________________________________________________________________________________________________________
 
