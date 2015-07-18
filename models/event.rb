@@ -3,8 +3,8 @@ class Event < ActiveRecord::Base
   has_and_belongs_to_many :pets
   belongs_to :categories
   validates :name, presence: true
-  validates :email, presence: true
-  validates :password, presence: true
+  
+ 
  
   # Takes date of event and reminder_time chosen by user.
   # increments date to reminder_time

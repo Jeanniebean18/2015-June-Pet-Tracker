@@ -45,7 +45,7 @@ end
 get "/delete_pet_confirm" do
   @pet = Pet.find(params["id"])
   if params["decision"] == "yes"
-    @pet.delete
+    @pet.destroy
     erb :"pets/pet_deleted_success" # make erb for this.
   else
     erb :"pets/pet_deleted_fail"

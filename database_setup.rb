@@ -35,8 +35,8 @@ unless ActiveRecord::Base.connection.table_exists?(:categories)
   end  
 end
 
-unless ActiveRecord::Base.connection.table_exists?(:pets_events)
-  ActiveRecord::Base.connection.create_table :pets_events, id: false do |t|
+unless ActiveRecord::Base.connection.table_exists?(:events_pets)
+  ActiveRecord::Base.connection.create_table :events_pets, id: false do |t|
     t.integer :event_id
     t.integer :pet_id
   end  

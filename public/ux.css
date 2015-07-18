@@ -38,9 +38,7 @@ body {
 
 .home_ux {
   position:relative;
-  height:100% !important;
-  border:1px solid red;
-  
+  width:100% 
 }
 
 .home {
@@ -146,7 +144,7 @@ h1 {
   right:0;
   width:60%;
   padding:5%;
-  min-height:700px;
+  min-height:500px;
   background-color:#11B3AF;
   
 }
@@ -159,9 +157,10 @@ h1 {
   right:0;
   width:60%;
   padding:5%;
-  min-height:700px;
+  min-height:500px;
   background-color:#11B3AF;
   z-index: 5000;
+  border: 1px solid;
 }
 
 
@@ -334,7 +333,6 @@ border: 2px solid !important;
   
   header {
     height: 100px;
-    
     z-index:200;
     position: absolute;
     top:0;
@@ -375,12 +373,13 @@ border: 2px solid !important;
     width:90%;
     padding:5%;
     z-index:0;
-    background: url("/cat.jpg") no-repeat center center fixed; 
+    background: url("/cat.jpg") no-repeat center left fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    min-height: 600px;
+    min-height: 800px;
+    overflow:hidden;
   }
   .logo2 {
     position: relative;
@@ -401,11 +400,14 @@ border: 2px solid !important;
   }
   
   #add_pet_event {
-    position: absolute;
-    top:125px;
-    left:425px;
-    color:white;
+    position: relative;
     display:block;
+    margin-top:20px;
+    margin-right:auto;
+    margin-left:auto;
+    color:white;
+    font-size:40px;
+    
     text-align:center;
     font-family:'Dosis', sans-serif;
     
@@ -413,24 +415,24 @@ border: 2px solid !important;
   
   #events {
     position:absolute;
-    top:-20px;
-    left:30px;
+    top:50px;
+    right:0;
     display:block;
     width:100%;
-    position:relative;
     background-color:transparent;
     height:100%;
-    min-height:520px;
-    
-    
   }
   
   #pets {
     display:none;
-    position: relative;
+    position:absolute;
+    top:100px;
+    right:0px;
     width:100%;
     padding:5%;
     background-color:transparent;
+    height:100%;
+    
     
   }
   
@@ -454,12 +456,7 @@ border: 2px solid !important;
     position:relative;
     
   }
-/*  #icons_wrapper {
-    margin-left:auto;
-    margin-right:auto;
-    width:auto;
-    top:-300px;
-  }*/
+
   
   #medicine_mobile {
     width:31%;
@@ -593,16 +590,7 @@ border: 2px solid !important;
       text-align: center;
       margin-top:6%;
     }
-    
-    #events {
-      display:block;
-      width:100%;
-      position:relative;
-      background-color:transparent;
-      height:100%;
-      min-height:520px;
-  
-    }
+ 
     
     #square_button {
       border-top:0;

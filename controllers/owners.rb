@@ -1,5 +1,6 @@
 get "/home" do
   erb :"user_menu", :layout => :"layout-admin"
+  #if session id doesn't equal admin id
 end
 
 # add owner------------------------------------------------------
@@ -47,7 +48,7 @@ get "/delete_owner" do
   @owner = Owner.find(params["id"])
   if params["decision"] == "yes"
     #also, add javacript to hide that box.
-    @owner.delete
+    @owner.destroy
     "deleted." # make erb for this.
   else
     "not deleted." # make erb for this.

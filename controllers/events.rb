@@ -8,17 +8,14 @@ get "/create_event/:x/:y" do
 end
 
 get "/save_event" do
-  @event = Event.new({"name" => params["name"], "date" => params["date"], "category_id" => params["category_id"], "reminder_time" => params["reminder_time"], "comment" => params["comment"]})
-  @owner = Owner.find(params["owner_id"])
-  @category = Category.find(params["category_id"])
-  event = @event.add_to_database
-  @string = []
+  @event = Event.new({name:params["name"], date:params["date"], category_id:params["category_id"], reminder_time:params["reminder_time"], comment:params["comment"]})
+  @category = Category.find(params[:category_id])
+  @owner = Owner.find(params[:owner_id])
+  @event.save
   @pet_ids = params["pets"]
   @pet_ids.each do |row|
-    @pet = Pet.find(row.to_i)
-    @string << @pet.name
-    @pet_event = PetEvent.new("pet_id" => row.to_i, "event_id" => event)
-    @pet_event.add_to_database
+  @pet = Pet.find(row.to_i)
+  @event.pets << @pet
   end
   erb :"events/save_event_success"
 end
