@@ -119,6 +119,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord
   pry
   rails
   sinatra
