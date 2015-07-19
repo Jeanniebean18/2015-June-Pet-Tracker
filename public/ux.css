@@ -160,7 +160,7 @@ h1 {
   min-height:500px;
   background-color:#11B3AF;
   z-index: 5000;
-  border: 1px solid;
+  
 }
 
 
@@ -407,7 +407,6 @@ border: 2px solid !important;
     margin-left:auto;
     color:white;
     font-size:40px;
-    
     text-align:center;
     font-family:'Dosis', sans-serif;
     
