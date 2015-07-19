@@ -38,12 +38,12 @@ end
 
 # delete pet -------------------------------------------------
 get "/delete_pet/:x" do
-  @pet = Pet.find(params[:name])
+  @pet = Pet.find(params[:x])
   erb :"pets/delete_pet"
 end
 
 get "/delete_pet_confirm" do
-  @pet = Pet.find(params["id"])
+  @pet = Pet.find(params[:id])
   if params["decision"] == "yes"
     @pet.destroy
     erb :"pets/pet_deleted_success" # make erb for this.
