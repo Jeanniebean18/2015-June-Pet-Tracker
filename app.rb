@@ -1,8 +1,8 @@
 # Empower my program with SQLite.
 require 'rubygems'
 require 'bundler/setup'
-require "active_record"
 
+require "active_record"
 require "pry"
 require "sinatra"
 require "sinatra/reloader"
@@ -10,18 +10,14 @@ require "sinatra/reloader"
 configure do
   enable :sessions
 end
+
 configure :development do
-  require "sqlite3"
-end
-configure :production do
-  require "pg"
-end
- 
-configure :development do
+   require "sqlite3"
   ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: 'pet_tracker.db')
 end
 
-configure :production do  
+configure :production do 
+  require "pg" 
   db = URI.parse(ENV['DATABASE_URL'])
 
   ActiveRecord::Base.establish_connection(
