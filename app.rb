@@ -2,13 +2,19 @@
 require 'rubygems'
 require 'bundler/setup'
 require "active_record"
-require "sqlite3"
+
 require "pry"
 require "sinatra"
 require "sinatra/reloader"
 
 configure do
   enable :sessions
+end
+configure :development do
+  require "sqlite3"
+end
+configure :production do
+  require "pg"
 end
  
 configure :development do
@@ -27,13 +33,9 @@ configure :production do
     :encoding => 'utf8'
   )
 end
-# Load/create our database for this program in SQlite.
-# CONNECTION = SQLite3::Database.new("pet_tracker.db")
-# ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: 'pet_tracker.db')
 
- 
 # Empower my program with SQLite.
-require "sqlite3"
+
 require "active_support/inflector"
 require "active_support/core_ext/array/conversions.rb"
 require "active_support/core_ext/date/calculations.rb"

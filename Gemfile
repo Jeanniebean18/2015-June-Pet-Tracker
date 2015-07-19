@@ -5,8 +5,7 @@ gem "rails"
 gem "pry"
 gem "sinatra"
 gem "sinatra-contrib"
-gem "sqlite3"
 gem "activerecord"
 
-# gem 'sqlite3', :groups => [:development, :test]
-# gem 'pg', :groups => [:production]
+gem 'sqlite3', :groups => [:development, :test]
+gem 'pg', :groups => [:production]
