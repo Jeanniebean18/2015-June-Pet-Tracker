@@ -5,13 +5,12 @@
   <!-- what to do with pet information.  -->
   
   <p> For pets:
-    <%pets = Pet.where("owner_id", @owner.id)%>
-    <% pets.each do |pet| %>
+    
+    <%@pets = @owner.pets%> <!-- //getting array of pets -->
+    <% @pets.each do |pet| %>
     <input type ="checkbox" name= "pets[]" value="<%=pet.id%>"><%=pet.name%></b> 
     <% end %>
-      
-  
-    <p> Date: <input type="date" name="date" value="<%= params["date"]%>" required></p>
+    <p> Date: <input type="date" name="date" value="" required></p>
   
     <input type="hidden" name="category_id" value="<%=@category.id%>">
     <input type="hidden" name="owner_id" value="<%=@owner.id%>">

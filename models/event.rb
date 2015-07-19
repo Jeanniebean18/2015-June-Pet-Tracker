@@ -9,9 +9,9 @@ class Event < ActiveRecord::Base
   # Takes date of event and reminder_time chosen by user.
   # increments date to reminder_time
   # Returns incremented date.
-  def increment_date(date, reminder_time)
-    @formatted_date = date.gsub(/-/, ', ').to_i
-    new_date = Date.new(@formatted_date)
-    new_date.advance(days: reminder_time) # => Wed, 04 Aug 2010
-  end
+  # def increment_date(date, reminder_time)
+#     @formatted_date = date.gsub(/-/, ', ').to_i
+#     new_date = Date.new(@formatted_date)
+#     new_date.advance(days: reminder_time) # => Wed, 04 Aug 2010
+#   end
 end
