@@ -30,10 +30,7 @@
   <div id="cat_back">
     
     <div id="events">
-      <%@pets = Pet.where(owner_id: @owner.id)%>
-      <%if @pets.blank?%>
-      <h2>You have no pets yet! <h2><a href="/add_pet/<%=@owner.id %>">Add a Pet</a></h2><h2>
-        <%else%>
+     
         
        
           
@@ -69,9 +66,10 @@
           </div>
         </div>
       </a> 
+      
       <% end %>
       <% end %>
-      <% end %>
+    
       
   
       
