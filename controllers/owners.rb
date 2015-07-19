@@ -1,3 +1,7 @@
+get "/" do
+  redirect "/home"
+end
+
 get "/home" do
   erb :"user_menu", :layout => :"layout-admin"
   #if session id doesn't equal admin id
