@@ -75,6 +75,10 @@ p {
   margin-left:auto;
   margin-top:7px;
   width:300px;
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
 }
 
 .group1 {
