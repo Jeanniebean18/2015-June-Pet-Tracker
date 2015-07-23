@@ -1,0 +1,17 @@
+restful resource routes
+
+list users     get /users   .erb
+new user       get  /users/new     new.erb
+create        post  /users        redirect
+delete        delete  /users/:id      redirect
+
+editing    get /users/:id/edit      edit.erb  (this is update form)
+
+update    put  /users/:id        redirect  (this is where you submit that form)
+show user    get/users/:id       showuser.erb
+
+
+list pets   get users/:id/articles
+
+
+new pet for user   get users/:user_id/articles/new

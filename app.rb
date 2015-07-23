@@ -6,6 +6,7 @@ require "active_record"
 require "pry"
 require "sinatra"
 require "sinatra/reloader"
+require 'bcrypt'
 
 configure do
   enable :sessions

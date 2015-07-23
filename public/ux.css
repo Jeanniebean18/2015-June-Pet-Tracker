@@ -365,6 +365,9 @@ border: 2px solid !important;
     color:white;
   }
   
+  
+
+  
   #cat_back {
     display:block;
     position: absolute;
@@ -373,7 +376,7 @@ border: 2px solid !important;
     width:90%;
     padding:5%;
     z-index:0;
-    background: url("/cat.jpg") no-repeat center left fixed; 
+    background: url("/yourpet2.jpg") no-repeat center right fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -400,27 +403,31 @@ border: 2px solid !important;
   }
   
   #add_pet_event {
-    position: relative;
+    position:relative;
+    margin-top:100px;
     display:block;
-    margin-top:20px;
-    margin-right:auto;
-    margin-left:auto;
     color:white;
-    font-size:40px;
+    font-size:200%;
     text-align:center;
     font-family:'Dosis', sans-serif;
+    margin-left:50px;
     
   }
   
   #events {
-    position:absolute;
+    position:relative;
     top:50px;
-    right:0;
+    left:0;
+    padding:0;
     display:block;
     width:90%;
     background-color:transparent;
-    height:100%;
+    margin-left:auto;
+    margin-right:auto;
+    min-height:0;
   }
+  
+
   
   #pets {
     display:none;
@@ -439,6 +446,7 @@ border: 2px solid !important;
     content:url("/medicine.svg");
     width:100px;
     position:relative;
+    
     
   }
   
@@ -471,9 +479,6 @@ border: 2px solid !important;
     
   }
  
-
-
-  
   .group1 {
     display: none;
   }
@@ -489,7 +494,6 @@ border: 2px solid !important;
     display:none;
   
   }
-
 
   .icon1 {
     position: relative;

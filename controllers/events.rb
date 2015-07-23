@@ -21,10 +21,12 @@ get "/save_event" do
 end
 # delete event from pet ------------------------------------------------------
 get "/delete_event_bridge/:x/:y/:z" do
+  
   @pet = Pet.find(params[:x])
   @event = Event.find(params[:y])
   @owner = Owner.find(params[:z])
-  PetEvent.delete_where(params[:x], params[:y])
+  # @event.pets.destroy(@pet)
+  # PetEvent.delete_where(params[:x], params[:y])
   erb :"events/delete_event_bridge"
 end
 
